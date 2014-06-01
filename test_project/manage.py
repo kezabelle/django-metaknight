@@ -33,18 +33,34 @@ INSTALLED_APPS = (
     "taggit",
     "varlet",
     "editregions",
+    "churlish",
+    "menuhin",
+    "adminlinks",
+    "moreloaders",
+    "patternatlas",
 )
 STATIC_URL = '/s/'
 MEDIA_URL = '/m/'
+TEMPLATE_LOADERS = (
+    ('moreloaders.mostlycached.Loader', (
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+    )),
+)
+MOSTLYCACHED_EXCLUDES = (
+    r'^.+\.json$',
+)
 
 
 class DoItLazy(object):
     def __iter__(self):
         from django.contrib import admin
-        from varlet import named_urls
+        from varlet import named_urls as page_urls
+        from patternatlas import urlconf as styleguide_urls
         admin.autodiscover()
         yield url(r'^admin/', include(admin.site.urls))
-        yield url(r'^', named_urls)
+        yield url(r'^styleguide/', styleguide_urls)
+        yield url(r'^', page_urls)
 
     def __reversed__(self):
         return reversed(tuple(iter(self)))
