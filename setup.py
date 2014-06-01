@@ -30,6 +30,7 @@ setup(
         'django-csp>=2.0.3',
         'django-secure>=1.0.0',
         'django-cors-headers>=0.12',
+        'django-robots>=1.0',
     ],
     zip_safe=False,
     license="BSD License",

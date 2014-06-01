@@ -31,6 +31,8 @@ INSTALLED_APPS = (
     "django.contrib.admin",
     "werkzeug_debugger_runserver",
     "taggit",
+    "robots",
+
     "varlet",
     "editregions",
     "churlish",
@@ -55,12 +57,21 @@ MOSTLYCACHED_EXCLUDES = (
 class DoItLazy(object):
     def __iter__(self):
         from django.contrib import admin
+        from django.contrib.sitemaps.views import sitemap
         from varlet import named_urls as page_urls
         from patternatlas import urlconf as styleguide_urls
         admin.autodiscover()
         yield url(r'^admin/', include(admin.site.urls))
         yield url(r'^styleguide/', styleguide_urls)
         yield url(r'^', page_urls)
+        yield url(r'^robots\.txt$', include('robots.urls'))
+
+        from varlet.sitemaps import PageSitemap
+        from patternatlas.sitemaps import PatternSitemap
+        yield url(r'^sitemap\.xml$', sitemap, {'sitemaps': {
+            'pages': PageSitemap,
+            'styleguide': PatternSitemap,
+        }})
 
     def __reversed__(self):
         return reversed(tuple(iter(self)))
