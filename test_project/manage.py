@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from __future__ import absolute_import
 import os
 import sys
+from django import VERSION as django_version
 from django.conf.urls import url, include
 
 # this module
@@ -20,7 +21,9 @@ DATABASES = {'default': {
 TEMPLATE_DIRS = (here('templates'), )
 SECRET_KEY = '$2274f6b78ef89ea2d67e067f498b5a0241c7874c$'
 SITE_ID = 1
-INSTALLED_APPS = (
+
+
+INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.sites",
     "django.contrib.auth",
@@ -29,7 +32,7 @@ INSTALLED_APPS = (
     "django.contrib.sitemaps",
     "django.contrib.messages",
     "django.contrib.admin",
-    "werkzeug_debugger_runserver",
+
     "taggit",
     "robots",
     "treebeard",
@@ -42,15 +45,23 @@ INSTALLED_APPS = (
     "adminlinks",
     "moreloaders",
     "patternatlas",
-)
+]
+
+if django_version[:3] >= (1, 7, 0):
+    debugger_needed_at = 0
+else:
+    debugger_needed_at = INSTALLED_APPS.index('django.contrib.admin') + 1
+INSTALLED_APPS.insert(debugger_needed_at, "werkzeug_debugger_runserver")
+
+
 STATIC_URL = '/s/'
 MEDIA_URL = '/m/'
-TEMPLATE_LOADERS = (
-    ('moreloaders.mostlycached.Loader', (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-    )),
-)
+# TEMPLATE_LOADERS = (
+#     ('moreloaders.mostlycached.Loader', (
+#         'django.template.loaders.filesystem.Loader',
+#         'django.template.loaders.app_directories.Loader',
+#     )),
+# )
 MOSTLYCACHED_EXCLUDES = (
     r'^.+\.json$',
 )
