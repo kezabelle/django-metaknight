@@ -1,1 +1,2 @@
 django-werkzeug-debugger-runserver>=0.2
+django_debug_toolbar>=1.2.1

@@ -32,6 +32,8 @@ INSTALLED_APPS = (
     "werkzeug_debugger_runserver",
     "taggit",
     "robots",
+    "treebeard",
+    "debug_toolbar",
 
     "varlet",
     "editregions",
@@ -75,6 +77,12 @@ class DoItLazy(object):
 
     def __reversed__(self):
         return reversed(tuple(iter(self)))
+
+    def __radd__(self, other):
+        return other + list(iter(self))
+
+    def __add__(self, other):
+        return list(iter(self)) + other
 
 
 urlpatterns = DoItLazy()
