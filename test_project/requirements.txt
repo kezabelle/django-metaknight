@@ -1,0 +1,1 @@
+django-werkzeug-debugger-runserver>=0.2
