@@ -8,7 +8,11 @@ from django.conf.urls import url, include
 # this module
 me = os.path.splitext(os.path.split(__file__)[1])[0]
 # helper function to locate this dir
-here = lambda x: os.path.join(os.path.abspath(os.path.dirname(__file__)), x)
+def here(*args):
+    return os.path.abspath(
+        os.path.join(os.path.abspath(os.path.dirname(__file__)), *args))
+
+sys.path.append(here('..'))
 
 # SETTINGS
 DEBUG = True
@@ -34,9 +38,10 @@ INSTALLED_APPS = [
     "django.contrib.admin",
 
     "taggit",
-    "robots",
+    # "robots",
     "treebeard",
     "debug_toolbar",
+    'rest_framework',
 
     "varlet",
     "editregions",
@@ -66,6 +71,17 @@ MOSTLYCACHED_EXCLUDES = (
     r'^.+\.json$',
 )
 
+MIDDLEWARE_CLASSES = (
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
+ )
+
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
@@ -81,15 +97,20 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 class DoItLazy(object):
     def __iter__(self):
         from django.contrib import admin
-        from django.contrib.sitemaps.views import sitemap
-        from varlet import named_urls as page_urls
-        from patternatlas import urlconf as styleguide_urls
         admin.autodiscover()
         yield url(r'^admin/', include(admin.site.urls))
+
+        from patternatlas import urlconf as styleguide_urls
         yield url(r'^styleguide/', styleguide_urls)
+
+        from metaknight.drf import v1_router
+        yield url(r'^api/v1/', include(v1_router.urls))
+
+        from varlet import named_urls as page_urls
         yield url(r'^', page_urls)
         yield url(r'^robots\.txt$', include('robots.urls'))
 
+        from django.contrib.sitemaps.views import sitemap
         from varlet.sitemaps import PageSitemap
         from patternatlas.sitemaps import PatternSitemap
         yield url(r'^sitemap\.xml$', sitemap, {'sitemaps': {

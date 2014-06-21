@@ -1,1 +1,10 @@
-test
+<!doctype html>
+<html><head></head><body>test
+{% if request %}
+    {% if request.user.is_authenticated %}
+    {{ request.user }}
+    {% else %}
+    anony
+    {% endif %}
+{% endif %}
+</body></html>
