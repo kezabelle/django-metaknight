@@ -4,13 +4,15 @@ from django.contrib.admin.sites import NotRegistered
 from varlet.admin import PageAdminConfig
 from varlet.models import Page
 from editregions.admin.inlines import EditRegionInline
+from adminlinks.admin import AdminlinksMixin
 try:
     from .checks import MKPageAdminChecks
 except ImportError:
     def MKPageAdminChecks():
         return True
 
-class MKPageAdmin(PageAdminConfig, admin.ModelAdmin):
+
+class MKPageAdmin(PageAdminConfig, AdminlinksMixin, admin.ModelAdmin):
     inlines = [EditRegionInline]
     checks_class = MKPageAdminChecks
 
