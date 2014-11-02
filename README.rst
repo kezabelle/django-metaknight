@@ -23,7 +23,7 @@ Maybe also:
 
 Then for security, probably also:
 
-* django-csp (Content Security Policy bits)
+* `django-csp`_ (Content Security Policy bits)
 * django-secure (various)
 * django-p3p (p3p policy headers)
 * django-cors-headers (cross-origin requests)
@@ -40,3 +40,5 @@ Then for security, probably also:
 .. _django-thadminjones: https://github.com/kezabelle/django-thadminjones
 .. _django-haystackbrowser: https://github.com/kezabelle/django-haystackbrowser
 .. _django-haystack: https://github.com/toastdriven/django-haystack
+
+.. _django-csp: https://github.com/mozilla/django-csp
