@@ -2,16 +2,21 @@
 Metaknight
 ==========
 
-Intended to pull together the following apps to create some sort of bastard
-CMS.
+A `Django`_ application which smashes together various bits and pieces I've
+written to create some sort of bastard CMS.
+
+Currently builds on:
 
 * `django-varlet`_ ("pages")
 * `django-editregions`_ (define blocks of editable content)
-* `django-churlish`_ (URL configuration)
 * `django-menuhin`_ (trees of menus)
-* `django-allowedsites`_ (dynamic ``ALLOWED_HOSTS``)
-* `django-patternatlas`_ (living style guides)
 * `django-adminlinks`_ (frontend modal editing)
+
+Options I might bring in, in future:
+
+* `django-patternatlas`_ (living style guides)
+* `django-churlish`_ (runtime URL [access/auth etc] configuration)
+* `django-allowedsites`_ (dynamic ``ALLOWED_HOSTS``)
 * `django-moreloaders`_ (semi-cached template loader, useful for editregions)
 
 Maybe also:
@@ -28,6 +33,23 @@ Then for security, probably also:
 * django-p3p (p3p policy headers)
 * django-cors-headers (cross-origin requests)
 
+Build statuses
+--------------
+
+`django-editregions`_
+^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: https://travis-ci.org/kezabelle/django-editregions.svg?branch=master
+  :target: https://travis-ci.org/kezabelle/django-editregions
+
+`django-menuhin`_
+^^^^^^^^^^^^^^^^^
+
+.. image:: https://travis-ci.org/kezabelle/django-menuhin.png?branch=master
+  :target: https://travis-ci.org/kezabelle/django-menuhin
+
+
+.. _Django: https://www.djangoproject.com/
 .. _django-varlet: https://github.com/kezabelle/django-varlet
 .. _django-editregions: https://github.com/kezabelle/django-editregions
 .. _django-churlish: https://github.com/kezabelle/django-churlish
