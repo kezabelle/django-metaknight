@@ -48,6 +48,12 @@ Build statuses
 .. image:: https://travis-ci.org/kezabelle/django-menuhin.png?branch=master
   :target: https://travis-ci.org/kezabelle/django-menuhin
 
+`django-varlet`_
+^^^^^^^^^^^^^^^^
+
+.. image:: https://travis-ci.org/kezabelle/django-varlet.svg?branch=master
+  :target: https://travis-ci.org/kezabelle/django-varlet
+
 
 .. _Django: https://www.djangoproject.com/
 .. _django-varlet: https://github.com/kezabelle/django-varlet
