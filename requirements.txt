@@ -5,4 +5,5 @@
 -e git+https://github.com/kezabelle/django-adminlinks.git#egg=django-adminlinks
 -e git+https://github.com/kezabelle/django-patternatlas.git#egg=django-patternatlas
 -e git+https://github.com/kezabelle/django-menuhin.git#egg=django-menuhin
+-e git+https://github.com/kezabelle/django-sitemapcheck.git#egg=django-sitemapcheck
 .

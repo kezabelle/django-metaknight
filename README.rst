@@ -11,6 +11,8 @@ Currently builds on:
 * `django-editregions`_ (define blocks of editable content)
 * `django-menuhin`_ (trees of menus)
 * `django-adminlinks`_ (frontend modal editing)
+* `django-sitemapcheck`_ (checks pages listed in your
+  sitemap.xml for common issues)
 
 Options I might bring in, in future:
 
@@ -54,6 +56,12 @@ Build statuses
 .. image:: https://travis-ci.org/kezabelle/django-varlet.svg?branch=master
   :target: https://travis-ci.org/kezabelle/django-varlet
 
+`django-sitemapcheck`_
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: https://travis-ci.org/kezabelle/django-sitemapcheck.svg?branch=master
+  :target: https://travis-ci.org/kezabelle/django-sitemapcheck
+
 
 .. _Django: https://www.djangoproject.com/
 .. _django-varlet: https://github.com/kezabelle/django-varlet
@@ -68,5 +76,5 @@ Build statuses
 .. _django-thadminjones: https://github.com/kezabelle/django-thadminjones
 .. _django-haystackbrowser: https://github.com/kezabelle/django-haystackbrowser
 .. _django-haystack: https://github.com/toastdriven/django-haystack
-
+.. _django-sitemapcheck: https://github.com/kezabelle/django-sitemapcheck
 .. _django-csp: https://github.com/mozilla/django-csp
