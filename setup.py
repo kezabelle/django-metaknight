@@ -31,6 +31,7 @@ setup(
         'django-secure>=1.0.0',
         'django-cors-headers>=0.12',
     ],
+    test_suite='runtests.runtests',
     zip_safe=False,
     license="BSD License",
     classifiers=[
